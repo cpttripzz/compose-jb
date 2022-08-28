@@ -4,7 +4,6 @@ plugins {
 }
 
 kotlin {
-    iosWorkaroundSupportArm64Simulator {}
 
     sourceSets {
         named("commonMain") {
