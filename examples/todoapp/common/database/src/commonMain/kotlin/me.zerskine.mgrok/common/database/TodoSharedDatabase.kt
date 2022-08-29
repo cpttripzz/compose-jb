@@ -3,7 +3,7 @@ package me.zerskine.mgrok.common.database
 import com.badoo.reaktive.completable.Completable
 import com.badoo.reaktive.maybe.Maybe
 import com.badoo.reaktive.observable.Observable
-import example.todo.common.database.TodoItemEntity
+import me.zerskine.mgrok.TodoItemEntity
 
 interface TodoSharedDatabase {
 

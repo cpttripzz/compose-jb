@@ -4,7 +4,7 @@ import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.arkivanov.essenty.lifecycle.resume
 import com.badoo.reaktive.base.invoke
-import example.todo.common.edit.TodoEdit
+import me.zerskine.mgrok.common.edit.TodoEdit
 import me.zerskine.mgrok.common.main.TodoMain
 import me.zerskine.mgrok.common.root.TodoRoot
 import me.zerskine.mgrok.common.root.TodoRoot.Child

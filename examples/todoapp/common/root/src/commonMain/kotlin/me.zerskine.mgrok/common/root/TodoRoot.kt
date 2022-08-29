@@ -2,7 +2,7 @@ package me.zerskine.mgrok.common.root
 
 import com.arkivanov.decompose.router.RouterState
 import com.arkivanov.decompose.value.Value
-import example.todo.common.edit.TodoEdit
+import me.zerskine.mgrok.common.edit.TodoEdit
 import me.zerskine.mgrok.common.main.TodoMain
 
 interface TodoRoot {

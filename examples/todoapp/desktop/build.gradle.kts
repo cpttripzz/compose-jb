@@ -32,7 +32,7 @@ kotlin {
 
 compose.desktop {
     application {
-        mainClass = "example.todo.desktop.MainKt"
+        mainClass = "me.zerskine.mgrok.desktop.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)

@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import example.todo.common.ui.ScrollbarAdapter
+import me.zerskine.mgrok.common.ui.ScrollbarAdapter
 
 actual val MARGIN_SCROLLBAR: Dp = 8.dp
 

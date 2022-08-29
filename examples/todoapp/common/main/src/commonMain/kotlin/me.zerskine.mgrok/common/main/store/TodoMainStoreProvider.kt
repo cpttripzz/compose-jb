@@ -1,9 +1,6 @@
 package me.zerskine.mgrok.common.main.store
 
-import com.arkivanov.mvikotlin.core.store.Reducer
-import com.arkivanov.mvikotlin.core.store.SimpleBootstrapper
-import com.arkivanov.mvikotlin.core.store.Store
-import com.arkivanov.mvikotlin.core.store.StoreFactory
+import com.arkivanov.mvikotlin.core.store.*
 import com.arkivanov.mvikotlin.extensions.reaktive.ReaktiveExecutor
 import com.badoo.reaktive.completable.Completable
 import com.badoo.reaktive.observable.Observable
@@ -24,7 +21,7 @@ internal class TodoMainStoreProvider(
             name = "TodoListStore",
             initialState = State(),
             bootstrapper = SimpleBootstrapper(Unit),
-            executorFactory = TodoMainStoreProvider::ExecutorImpl,
+            executorFactory = ::ExecutorImpl,
             reducer = ReducerImpl
         ) {}
 

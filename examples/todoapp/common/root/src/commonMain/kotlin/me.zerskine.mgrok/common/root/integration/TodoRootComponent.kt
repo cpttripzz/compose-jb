@@ -11,13 +11,13 @@ import com.arkivanov.essenty.parcelable.Parcelize
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.badoo.reaktive.base.Consumer
 import me.zerskine.mgrok.common.database.TodoSharedDatabase
-import example.todo.common.edit.TodoEdit
-import example.todo.common.edit.integration.TodoEditComponent
+import me.zerskine.mgrok.common.edit.TodoEdit
+import me.zerskine.mgrok.common.edit.integration.TodoEditComponent
 import me.zerskine.mgrok.common.main.TodoMain
 import me.zerskine.mgrok.common.main.integration.TodoMainComponent
 import me.zerskine.mgrok.common.root.TodoRoot
 import me.zerskine.mgrok.common.root.TodoRoot.Child
-import example.todo.common.utils.Consumer
+import me.zerskine.mgrok.common.utils.Consumer
 
 class TodoRootComponent internal constructor(
     componentContext: ComponentContext,

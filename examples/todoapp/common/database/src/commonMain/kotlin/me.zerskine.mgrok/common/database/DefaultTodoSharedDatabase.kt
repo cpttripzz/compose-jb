@@ -3,28 +3,14 @@ package me.zerskine.mgrok.common.database
 import com.badoo.reaktive.base.setCancellable
 import com.badoo.reaktive.completable.Completable
 import com.badoo.reaktive.maybe.Maybe
-import com.badoo.reaktive.observable.Observable
-import com.badoo.reaktive.observable.autoConnect
-import com.badoo.reaktive.observable.firstOrError
-import com.badoo.reaktive.observable.map
-import com.badoo.reaktive.observable.observable
-import com.badoo.reaktive.observable.observeOn
-import com.badoo.reaktive.observable.replay
+import com.badoo.reaktive.observable.*
 import com.badoo.reaktive.scheduler.ioScheduler
-import com.badoo.reaktive.single.Single
-import com.badoo.reaktive.single.asCompletable
-import com.badoo.reaktive.single.asObservable
-import com.badoo.reaktive.single.doOnBeforeSuccess
-import com.badoo.reaktive.single.flatMapObservable
-import com.badoo.reaktive.single.map
-import com.badoo.reaktive.single.mapNotNull
-import com.badoo.reaktive.single.observeOn
-import com.badoo.reaktive.single.singleOf
+import com.badoo.reaktive.single.*
 import com.squareup.sqldelight.Query
 import com.squareup.sqldelight.db.SqlDriver
-import example.todo.common.database.TodoDatabaseQueries
-import example.todo.common.database.TodoItemEntity
-import example.todo.database.TodoDatabase
+import me.zerskine.mgrok.TodoDatabaseQueries
+import me.zerskine.mgrok.TodoItemEntity
+import me.zerskine.mgrok.database.TodoDatabase
 
 class DefaultTodoSharedDatabase(driver: Single<SqlDriver>) : TodoSharedDatabase {
 

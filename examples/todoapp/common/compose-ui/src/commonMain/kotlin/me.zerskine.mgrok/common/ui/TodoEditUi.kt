@@ -20,7 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
-import example.todo.common.edit.TodoEdit
+import me.zerskine.mgrok.common.edit.TodoEdit
 
 @Composable
 fun TodoEditContent(component: TodoEdit) {

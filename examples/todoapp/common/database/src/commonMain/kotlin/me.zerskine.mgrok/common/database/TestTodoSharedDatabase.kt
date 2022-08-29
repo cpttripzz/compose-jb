@@ -13,7 +13,7 @@ import com.badoo.reaktive.scheduler.Scheduler
 import com.badoo.reaktive.single.notNull
 import com.badoo.reaktive.single.singleFromFunction
 import com.badoo.reaktive.subject.behavior.BehaviorSubject
-import example.todo.common.database.TodoItemEntity
+import me.zerskine.mgrok.TodoItemEntity
 
 // There were problems when using real database in JS tests, hence the in-memory test implementation
 class TestTodoSharedDatabase(

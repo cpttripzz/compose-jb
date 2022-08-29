@@ -8,8 +8,8 @@ import com.badoo.reaktive.subject.publish.PublishSubject
 import com.badoo.reaktive.test.observable.assertValue
 import com.badoo.reaktive.test.observable.test
 import com.badoo.reaktive.test.scheduler.TestScheduler
+import me.zerskine.mgrok.TodoItemEntity
 import me.zerskine.mgrok.common.database.TestTodoSharedDatabase
-import example.todo.common.database.TodoItemEntity
 import me.zerskine.mgrok.common.main.TodoItem
 import me.zerskine.mgrok.common.main.TodoMain.Model
 import me.zerskine.mgrok.common.main.TodoMain.Output

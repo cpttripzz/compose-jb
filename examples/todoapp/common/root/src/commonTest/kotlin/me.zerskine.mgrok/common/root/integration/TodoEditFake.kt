@@ -2,9 +2,9 @@ package me.zerskine.mgrok.common.root.integration
 
 import com.arkivanov.decompose.value.Value
 import com.badoo.reaktive.base.Consumer
-import example.todo.common.edit.TodoEdit
-import example.todo.common.edit.TodoEdit.Model
-import example.todo.common.edit.TodoEdit.Output
+import me.zerskine.mgrok.common.edit.TodoEdit
+import me.zerskine.mgrok.common.edit.TodoEdit.Model
+import me.zerskine.mgrok.common.edit.TodoEdit.Output
 
 class TodoEditFake(
     val itemId: Long,

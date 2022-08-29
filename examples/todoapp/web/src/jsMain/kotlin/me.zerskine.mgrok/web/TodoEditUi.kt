@@ -2,7 +2,7 @@ package me.zerskine.mgrok.web
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import example.todo.common.edit.TodoEdit
+import me.zerskine.mgrok.common.edit.TodoEdit
 import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.FlexDirection
 import org.jetbrains.compose.web.css.FlexWrap

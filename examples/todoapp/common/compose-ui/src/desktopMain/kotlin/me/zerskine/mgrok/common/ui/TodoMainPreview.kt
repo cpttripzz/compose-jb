@@ -4,7 +4,7 @@ import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import example.todo.common.ui.TodoMainPreview
+import me.zerskine.mgrok.common.ui.TodoMainPreview
 import me.zerskine.mgrok.common.main.TodoItem
 import me.zerskine.mgrok.common.main.TodoMain
 import me.zerskine.mgrok.common.main.TodoMain.Model

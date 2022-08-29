@@ -3,7 +3,7 @@ package me.zerskine.mgrok.common.main.integration
 import com.badoo.reaktive.completable.Completable
 import com.badoo.reaktive.observable.Observable
 import com.badoo.reaktive.observable.mapIterable
-import example.todo.common.database.TodoItemEntity
+import me.zerskine.mgrok.TodoItemEntity
 import me.zerskine.mgrok.common.database.TodoSharedDatabase
 import me.zerskine.mgrok.common.main.TodoItem
 import me.zerskine.mgrok.common.main.store.TodoMainStoreProvider

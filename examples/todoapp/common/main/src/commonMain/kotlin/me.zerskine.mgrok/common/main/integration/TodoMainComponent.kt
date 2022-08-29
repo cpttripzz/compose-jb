@@ -12,8 +12,8 @@ import me.zerskine.mgrok.common.main.TodoMain.Model
 import me.zerskine.mgrok.common.main.TodoMain.Output
 import me.zerskine.mgrok.common.main.store.TodoMainStore.Intent
 import me.zerskine.mgrok.common.main.store.TodoMainStoreProvider
-import example.todo.common.utils.asValue
-import example.todo.common.utils.getStore
+import me.zerskine.mgrok.common.utils.asValue
+import me.zerskine.mgrok.common.utils.getStore
 
 class TodoMainComponent(
     componentContext: ComponentContext,

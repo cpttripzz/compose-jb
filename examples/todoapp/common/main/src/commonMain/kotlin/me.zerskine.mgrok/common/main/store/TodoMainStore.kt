@@ -2,8 +2,8 @@ package me.zerskine.mgrok.common.main.store
 
 import com.arkivanov.mvikotlin.core.store.Store
 import me.zerskine.mgrok.common.main.TodoItem
-import example.todo.common.main.store.TodoMainStore.Intent
-import example.todo.common.main.store.TodoMainStore.State
+import me.zerskine.mgrok.common.main.store.TodoMainStore.Intent
+import me.zerskine.mgrok.common.main.store.TodoMainStore.State
 
 internal interface TodoMainStore : Store<Intent, State, Nothing> {
 
