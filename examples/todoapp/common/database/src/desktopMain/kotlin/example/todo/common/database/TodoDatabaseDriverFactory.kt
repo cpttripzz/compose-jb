@@ -1,8 +1,8 @@
-package example.todo.common.database
+package me.zerskine.mgrok.common.database
 
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
-import example.todo.database.TodoDatabase
+import me.zerskine.mgrok.database.TodoDatabase
 import java.io.File
 
 @Suppress("FunctionName") // FactoryFunction

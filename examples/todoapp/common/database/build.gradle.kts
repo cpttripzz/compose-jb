@@ -6,7 +6,7 @@ plugins {
 
 sqldelight {
     database("TodoDatabase") {
-        packageName = "example.todo.database"
+        packageName = "me.zerskine.mgrok.database"
     }
 }
 

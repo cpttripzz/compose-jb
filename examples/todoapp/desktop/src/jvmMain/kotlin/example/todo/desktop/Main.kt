@@ -1,4 +1,4 @@
-package example.todo.desktop
+package me.zerskine.mgrok.desktop
 
 import androidx.compose.desktop.DesktopTheme
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,11 +16,11 @@ import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.badoo.reaktive.coroutinesinterop.asScheduler
 import com.badoo.reaktive.scheduler.overrideSchedulers
-import example.todo.common.database.DefaultTodoSharedDatabase
-import example.todo.common.database.TodoDatabaseDriver
-import example.todo.common.root.TodoRoot
-import example.todo.common.root.integration.TodoRootComponent
-import example.todo.common.ui.TodoRootContent
+import me.zerskine.mgrok.common.database.DefaultTodoSharedDatabase
+import me.zerskine.mgrok.common.database.TodoDatabaseDriver
+import me.zerskine.mgrok.common.root.TodoRoot
+import me.zerskine.mgrok.common.root.integration.TodoRootComponent
+import me.zerskine.mgrok.common.ui.TodoRootContent
 import kotlinx.coroutines.Dispatchers
 
 fun main() {
