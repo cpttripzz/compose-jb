@@ -3,8 +3,8 @@ package me.zerskine.mgrok.common.main.store
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.badoo.reaktive.scheduler.overrideSchedulers
 import com.badoo.reaktive.test.scheduler.TestScheduler
-import me.zerskine.mgrok.common.main.TodoItem
-import me.zerskine.mgrok.common.main.store.TodoMainStore.Intent
+import me.zerskine.mgrok.common.main.MgrokItem
+import me.zerskine.mgrok.common.main.store.MgrokMainStore.Intent
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -12,10 +12,10 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 @Suppress("TestFunctionName")
-class TodoMainStoreTest {
+class MgrokMainStoreTest {
 
-    private val database = TestTodoMainStoreDatabase()
-    private val provider = TodoMainStoreProvider(storeFactory = DefaultStoreFactory(), database = database)
+    private val database = TestMgrokMainStoreDatabase()
+    private val provider = MgrokMainStoreProvider(storeFactory = DefaultStoreFactory(), database = database)
 
     @BeforeTest
     fun before() {
@@ -24,9 +24,9 @@ class TodoMainStoreTest {
 
     @Test
     fun GIVEN_items_in_database_WHEN_created_THEN_loads_items_from_database() {
-        val item1 = TodoItem(id = 1L, order = 2L, text = "item1")
-        val item2 = TodoItem(id = 2L, order = 1L, text = "item2", isDone = true)
-        val item3 = TodoItem(id = 3L, order = 3L, text = "item3")
+        val item1 = MgrokItem(id = 1L, order = 2L, text = "item1")
+        val item2 = MgrokItem(id = 2L, order = 1L, text = "item2", isDone = true)
+        val item3 = MgrokItem(id = 3L, order = 3L, text = "item3")
         database.items = listOf(item1, item2, item3)
 
         val store = provider.provide()
@@ -36,12 +36,12 @@ class TodoMainStoreTest {
 
     @Test
     fun WHEN_items_changed_in_database_THEN_contains_new_items() {
-        database.items = listOf(TodoItem())
+        database.items = listOf(MgrokItem())
         val store = provider.provide()
 
-        val item1 = TodoItem(id = 1L, order = 2L, text = "item1")
-        val item2 = TodoItem(id = 2L, order = 1L, text = "item2", isDone = true)
-        val item3 = TodoItem(id = 3L, order = 3L, text = "item3")
+        val item1 = MgrokItem(id = 1L, order = 2L, text = "item1")
+        val item2 = MgrokItem(id = 2L, order = 1L, text = "item2", isDone = true)
+        val item3 = MgrokItem(id = 3L, order = 3L, text = "item3")
         database.items = listOf(item1, item2, item3)
 
         assertEquals(listOf(item3, item1, item2), store.state.items)
@@ -49,8 +49,8 @@ class TodoMainStoreTest {
 
     @Test
     fun WHEN_Intent_SetItemDone_THEN_done_changed_in_state() {
-        val item1 = TodoItem(id = 1L, text = "item1")
-        val item2 = TodoItem(id = 2L, text = "item2", isDone = false)
+        val item1 = MgrokItem(id = 1L, text = "item1")
+        val item2 = MgrokItem(id = 2L, text = "item2", isDone = false)
         database.items = listOf(item1, item2)
         val store = provider.provide()
 
@@ -61,8 +61,8 @@ class TodoMainStoreTest {
 
     @Test
     fun WHEN_Intent_SetItemDone_THEN_done_changed_in_database() {
-        val item1 = TodoItem(id = 1L, text = "item1")
-        val item2 = TodoItem(id = 2L, text = "item2", isDone = false)
+        val item1 = MgrokItem(id = 1L, text = "item1")
+        val item2 = MgrokItem(id = 2L, text = "item2", isDone = false)
         database.items = listOf(item1, item2)
         val store = provider.provide()
 
@@ -73,8 +73,8 @@ class TodoMainStoreTest {
 
     @Test
     fun WHEN_Intent_DeleteItem_THEN_item_deleted_in_state() {
-        val item1 = TodoItem(id = 1L, text = "item1")
-        val item2 = TodoItem(id = 2L, text = "item2")
+        val item1 = MgrokItem(id = 1L, text = "item1")
+        val item2 = MgrokItem(id = 2L, text = "item2")
         database.items = listOf(item1, item2)
         val store = provider.provide()
 
@@ -85,8 +85,8 @@ class TodoMainStoreTest {
 
     @Test
     fun WHEN_Intent_DeleteItem_THEN_item_deleted_in_database() {
-        val item1 = TodoItem(id = 1L, text = "item1")
-        val item2 = TodoItem(id = 2L, text = "item2")
+        val item1 = MgrokItem(id = 1L, text = "item1")
+        val item2 = MgrokItem(id = 2L, text = "item2")
         database.items = listOf(item1, item2)
         val store = provider.provide()
 

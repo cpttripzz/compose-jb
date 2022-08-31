@@ -2,7 +2,7 @@ package me.zerskine.mgrok.common.main
 
 import com.arkivanov.decompose.value.Value
 
-interface TodoMain {
+interface MgrokMain {
 
     val models: Value<Model>
 
@@ -17,7 +17,7 @@ interface TodoMain {
     fun onAddItemClicked()
 
     data class Model(
-        val items: List<TodoItem>,
+        val items: List<MgrokItem>,
         val text: String
     )
 

@@ -4,11 +4,11 @@ import com.badoo.reaktive.completable.Completable
 import com.badoo.reaktive.maybe.Maybe
 import com.badoo.reaktive.observable.Observable
 
-interface TodoSharedDatabase {
+interface MgrokSharedDatabase {
 
-    fun observeAll(): Observable<List<TodoItemEntity>>
+    fun observeAll(): Observable<List<MgrokItemEntity>>
 
-    fun select(id: Long): Maybe<TodoItemEntity>
+    fun select(id: Long): Maybe<MgrokItemEntity>
 
     fun add(text: String): Completable
 

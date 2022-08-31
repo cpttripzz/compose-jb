@@ -4,19 +4,19 @@ import com.badoo.reaktive.completable.Completable
 import com.badoo.reaktive.completable.completableFromFunction
 import com.badoo.reaktive.observable.Observable
 import com.badoo.reaktive.subject.behavior.BehaviorSubject
-import me.zerskine.mgrok.common.main.TodoItem
+import me.zerskine.mgrok.common.main.MgrokItem
 
-internal class TestTodoMainStoreDatabase : TodoMainStoreProvider.Database {
+internal class TestMgrokMainStoreDatabase : MgrokMainStoreProvider.Database {
 
-    private val subject = BehaviorSubject<List<TodoItem>>(emptyList())
+    private val subject = BehaviorSubject<List<MgrokItem>>(emptyList())
 
-    var items: List<TodoItem>
+    var items: List<MgrokItem>
         get() = subject.value
         set(value) {
             subject.onNext(value)
         }
 
-    override val updates: Observable<List<TodoItem>> = subject
+    override val updates: Observable<List<MgrokItem>> = subject
 
     override fun setDone(id: Long, isDone: Boolean): Completable =
         completableFromFunction {
@@ -30,11 +30,11 @@ internal class TestTodoMainStoreDatabase : TodoMainStoreProvider.Database {
 
     override fun add(text: String): Completable =
         completableFromFunction {
-            val id = items.maxByOrNull(TodoItem::id)?.id?.inc() ?: 1L
-            this.items += TodoItem(id = id, order = id, text = text)
+            val id = items.maxByOrNull(MgrokItem::id)?.id?.inc() ?: 1L
+            this.items += MgrokItem(id = id, order = id, text = text)
         }
 
-    private fun update(id: Long, func: TodoItem.() -> TodoItem) {
+    private fun update(id: Long, func: MgrokItem.() -> MgrokItem) {
         items = items.map { if (it.id == id) it.func() else it }
     }
 }

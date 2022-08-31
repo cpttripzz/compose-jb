@@ -1,11 +1,11 @@
 package me.zerskine.mgrok.common.main.store
 
 import com.arkivanov.mvikotlin.core.store.Store
-import me.zerskine.mgrok.common.main.TodoItem
-import me.zerskine.mgrok.common.main.store.TodoMainStore.Intent
-import me.zerskine.mgrok.common.main.store.TodoMainStore.State
+import me.zerskine.mgrok.common.main.MgrokItem
+import me.zerskine.mgrok.common.main.store.MgrokMainStore.Intent
+import me.zerskine.mgrok.common.main.store.MgrokMainStore.State
 
-internal interface TodoMainStore : Store<Intent, State, Nothing> {
+internal interface MgrokMainStore : Store<Intent, State, Nothing> {
 
     sealed class Intent {
         data class SetItemDone(val id: Long, val isDone: Boolean) : Intent()
@@ -15,7 +15,7 @@ internal interface TodoMainStore : Store<Intent, State, Nothing> {
     }
 
     data class State(
-        val items: List<TodoItem> = emptyList(),
+        val items: List<MgrokItem> = emptyList(),
         val text: String = ""
     )
 }

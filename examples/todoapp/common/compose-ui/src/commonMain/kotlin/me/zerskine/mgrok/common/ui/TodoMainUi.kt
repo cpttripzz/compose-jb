@@ -32,18 +32,18 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
-import me.zerskine.mgrok.common.main.TodoItem
-import me.zerskine.mgrok.common.main.TodoMain
+import me.zerskine.mgrok.common.main.MgrokItem
+import me.zerskine.mgrok.common.main.MgrokMain
 
 @Composable
-fun TodoMainContent(component: TodoMain) {
+fun MgrokMainContent(component: MgrokMain) {
     val model by component.models.subscribeAsState()
 
     Column {
-        TopAppBar(title = { Text(text = "Todo List") })
+        TopAppBar(title = { Text(text = "Mgrok List") })
 
         Box(Modifier.weight(1F)) {
-            TodoList(
+            MgrokList(
                 items = model.items,
                 onItemClicked = component::onItemClicked,
                 onDoneChanged = component::onItemDoneChanged,
@@ -51,7 +51,7 @@ fun TodoMainContent(component: TodoMain) {
             )
         }
 
-        TodoInput(
+        MgrokInput(
             text = model.text,
             onAddClicked = component::onAddItemClicked,
             onTextChanged = component::onInputTextChanged
@@ -60,8 +60,8 @@ fun TodoMainContent(component: TodoMain) {
 }
 
 @Composable
-private fun TodoList(
-    items: List<TodoItem>,
+private fun MgrokList(
+    items: List<MgrokItem>,
     onItemClicked: (id: Long) -> Unit,
     onDoneChanged: (id: Long, isDone: Boolean) -> Unit,
     onDeleteItemClicked: (id: Long) -> Unit
@@ -95,7 +95,7 @@ private fun TodoList(
 
 @Composable
 private fun Item(
-    item: TodoItem,
+    item: MgrokItem,
     onItemClicked: (id: Long) -> Unit,
     onDoneChanged: (id: Long, isDone: Boolean) -> Unit,
     onDeleteItemClicked: (id: Long) -> Unit
@@ -133,7 +133,7 @@ private fun Item(
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-private fun TodoInput(
+private fun MgrokInput(
     text: String,
     onTextChanged: (String) -> Unit,
     onAddClicked: () -> Unit
@@ -143,7 +143,7 @@ private fun TodoInput(
             value = text,
             modifier = Modifier.weight(weight = 1F).onKeyEvent(onKeyUp(Key.Enter, onAddClicked)),
             onValueChange = onTextChanged,
-            label = { Text(text = "Add a todo") }
+            label = { Text(text = "Add a Mgrok") }
         )
 
         Spacer(modifier = Modifier.width(8.dp))

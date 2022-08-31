@@ -1,12 +1,12 @@
 package me.zerskine.mgrok.common.edit.store
 
 import com.arkivanov.mvikotlin.core.store.Store
-import me.zerskine.mgrok.common.edit.TodoItem
-import me.zerskine.mgrok.common.edit.store.TodoEditStore.Intent
-import me.zerskine.mgrok.common.edit.store.TodoEditStore.Label
-import me.zerskine.mgrok.common.edit.store.TodoEditStore.State
+import me.zerskine.mgrok.common.edit.MgrokItem
+import me.zerskine.mgrok.common.edit.store.MgrokEditStore.Intent
+import me.zerskine.mgrok.common.edit.store.MgrokEditStore.Label
+import me.zerskine.mgrok.common.edit.store.MgrokEditStore.State
 
-internal interface TodoEditStore : Store<Intent, State, Label> {
+internal interface MgrokEditStore : Store<Intent, State, Label> {
 
     sealed class Intent {
         data class SetText(val text: String) : Intent()
@@ -19,6 +19,6 @@ internal interface TodoEditStore : Store<Intent, State, Label> {
     )
 
     sealed class Label {
-        data class Changed(val item: TodoItem) : Label()
+        data class Changed(val item: MgrokItem) : Label()
     }
 }

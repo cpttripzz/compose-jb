@@ -4,16 +4,16 @@ import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import me.zerskine.mgrok.common.edit.TodoEdit
-import me.zerskine.mgrok.common.edit.TodoEdit.Model
+import me.zerskine.mgrok.common.edit.MgrokEdit
+import me.zerskine.mgrok.common.edit.MgrokEdit.Model
 
 @Composable
 @Preview
-fun TodoEditContentPreview() {
-    TodoEditContent(TodoEditPreview())
+fun MgrokEditContentPreview() {
+    MgrokEditContent(MgrokEditPreview())
 }
 
-class TodoEditPreview : TodoEdit {
+class MgrokEditPreview : MgrokEdit {
     override val models: Value<Model> =
         MutableValue(
             Model(

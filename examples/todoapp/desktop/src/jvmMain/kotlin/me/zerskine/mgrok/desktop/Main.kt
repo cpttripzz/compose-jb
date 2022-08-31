@@ -11,23 +11,22 @@ import androidx.compose.ui.window.rememberWindowState
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.decompose.extensions.compose.jetbrains.lifecycle.LifecycleController
-import com.arkivanov.decompose.extensions.compose.jetbrains.rememberRootComponent
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.badoo.reaktive.coroutinesinterop.asScheduler
 import com.badoo.reaktive.scheduler.overrideSchedulers
-import me.zerskine.mgrok.common.database.DefaultTodoSharedDatabase
-import me.zerskine.mgrok.common.database.TodoDatabaseDriver
-import me.zerskine.mgrok.common.root.TodoRoot
-import me.zerskine.mgrok.common.root.integration.TodoRootComponent
-import me.zerskine.mgrok.common.ui.TodoRootContent
 import kotlinx.coroutines.Dispatchers
+import me.zerskine.mgrok.common.database.DefaultMgrokSharedDatabase
+import me.zerskine.mgrok.common.database.MgrokDatabaseDriver
+import me.zerskine.mgrok.common.root.MgrokRoot
+import me.zerskine.mgrok.common.root.integration.MgrokRootComponent
+import me.zerskine.mgrok.common.ui.MgrokRootContent
 
 fun main() {
     overrideSchedulers(main = Dispatchers.Main::asScheduler)
 
     val lifecycle = LifecycleRegistry()
-    val root = todoRoot(DefaultComponentContext(lifecycle = lifecycle))
+    val root = mgrokRoot(DefaultComponentContext(lifecycle = lifecycle))
 
     application {
         val windowState = rememberWindowState()
@@ -36,12 +35,12 @@ fun main() {
         Window(
             onCloseRequest = ::exitApplication,
             state = windowState,
-            title = "Todo"
+            title = "Mgrok"
         ) {
             Surface(modifier = Modifier.fillMaxSize()) {
                 MaterialTheme {
                     DesktopTheme {
-                        TodoRootContent(root)
+                        MgrokRootContent(root)
                     }
                 }
             }
@@ -49,9 +48,9 @@ fun main() {
     }
 }
 
-private fun todoRoot(componentContext: ComponentContext): TodoRoot =
-    TodoRootComponent(
+private fun mgrokRoot(componentContext: ComponentContext): MgrokRoot =
+    MgrokRootComponent(
         componentContext = componentContext,
         storeFactory = DefaultStoreFactory(),
-        database = DefaultTodoSharedDatabase(TodoDatabaseDriver())
+        database = DefaultMgrokSharedDatabase(MgrokDatabaseDriver())
     )

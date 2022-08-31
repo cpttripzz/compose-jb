@@ -4,22 +4,22 @@ import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import me.zerskine.mgrok.common.main.TodoItem
-import me.zerskine.mgrok.common.main.TodoMain
-import me.zerskine.mgrok.common.main.TodoMain.Model
+import me.zerskine.mgrok.common.main.MgrokItem
+import me.zerskine.mgrok.common.main.MgrokMain
+import me.zerskine.mgrok.common.main.MgrokMain.Model
 
 @Preview
 @Composable
-fun TodoMainContentPreview() {
-    TodoMainContent(TodoMainPreview())
+fun MgrokMainContentPreview() {
+    MgrokMainContent(MgrokMainPreview())
 }
 
-class TodoMainPreview : TodoMain {
+class MgrokMainPreview : MgrokMain {
     override val models: Value<Model> =
         MutableValue(
             Model(
                 items = List(5) { index ->
-                    TodoItem(
+                    MgrokItem(
                         id = index.toLong(),
                         text = "Item $index",
                         isDone = index % 2 == 0

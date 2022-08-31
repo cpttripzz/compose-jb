@@ -2,7 +2,7 @@ package me.zerskine.mgrok.web
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import me.zerskine.mgrok.common.edit.TodoEdit
+import me.zerskine.mgrok.common.edit.MgrokEdit
 import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.FlexDirection
 import org.jetbrains.compose.web.css.FlexWrap
@@ -17,7 +17,7 @@ import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Text
 
 @Composable
-fun TodoEditUi(component: TodoEdit) {
+fun MgrokEditUi(component: MgrokEdit) {
     val model by component.models.subscribeAsState()
 
     Div(
@@ -39,7 +39,7 @@ fun TodoEditUi(component: TodoEdit) {
             }
         ) {
             NavBar(
-                title = "Edit todo",
+                title = "Edit mgrok",
                 navigationIcon = NavBarIcon(
                     name = "arrow_back",
                     onClick = component::onCloseClicked
@@ -59,7 +59,7 @@ fun TodoEditUi(component: TodoEdit) {
             }
         ) {
             MaterialTextArea(
-                id = "text_area_edit_todo",
+                id = "text_area_edit_mgrok",
                 label = "",
                 text = model.text,
                 onTextChanged = component::onTextChanged,

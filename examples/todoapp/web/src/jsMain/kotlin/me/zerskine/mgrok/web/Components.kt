@@ -84,7 +84,7 @@ fun MaterialTextArea(
         TextArea(
             value = text,
             attrs = {
-                id("text_area_add_todo")
+                id("text_area_add_mgrok")
                 classes("materialize-textarea")
                 onInput { onTextChanged(it.value) }
                 style {

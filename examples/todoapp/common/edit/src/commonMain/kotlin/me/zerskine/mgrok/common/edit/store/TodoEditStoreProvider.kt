@@ -10,19 +10,19 @@ import com.badoo.reaktive.maybe.Maybe
 import com.badoo.reaktive.maybe.map
 import com.badoo.reaktive.maybe.observeOn
 import com.badoo.reaktive.scheduler.mainScheduler
-import me.zerskine.mgrok.common.edit.TodoItem
-import me.zerskine.mgrok.common.edit.store.TodoEditStore.Intent
-import me.zerskine.mgrok.common.edit.store.TodoEditStore.Label
-import me.zerskine.mgrok.common.edit.store.TodoEditStore.State
+import me.zerskine.mgrok.common.edit.MgrokItem
+import me.zerskine.mgrok.common.edit.store.MgrokEditStore.Intent
+import me.zerskine.mgrok.common.edit.store.MgrokEditStore.Label
+import me.zerskine.mgrok.common.edit.store.MgrokEditStore.State
 
-internal class TodoEditStoreProvider(
+internal class MgrokEditStoreProvider(
     private val storeFactory: StoreFactory,
     private val database: Database,
     private val id: Long
 ) {
 
-    fun provide(): TodoEditStore =
-        object : TodoEditStore, Store<Intent, State, Label> by storeFactory.create(
+    fun provide(): MgrokEditStore =
+        object : MgrokEditStore, Store<Intent, State, Label> by storeFactory.create(
             name = "EditStore",
             initialState = State(),
             bootstrapper = SimpleBootstrapper(Unit),
@@ -31,7 +31,7 @@ internal class TodoEditStoreProvider(
         ) {}
 
     private sealed class Msg {
-        data class Loaded(val item: TodoItem) : Msg()
+        data class Loaded(val item: MgrokItem) : Msg()
         data class TextChanged(val text: String) : Msg()
         data class DoneChanged(val isDone: Boolean) : Msg()
     }
@@ -53,13 +53,13 @@ internal class TodoEditStoreProvider(
 
         private fun setText(text: String, state: State) {
             dispatch(Msg.TextChanged(text = text))
-            publish(Label.Changed(TodoItem(text = text, isDone = state.isDone)))
+            publish(Label.Changed(MgrokItem(text = text, isDone = state.isDone)))
             database.setText(id = id, text = text).subscribeScoped()
         }
 
         private fun setDone(isDone: Boolean, state: State) {
             dispatch(Msg.DoneChanged(isDone = isDone))
-            publish(Label.Changed(TodoItem(text = state.text, isDone = isDone)))
+            publish(Label.Changed(MgrokItem(text = state.text, isDone = isDone)))
             database.setDone(id = id, isDone = isDone).subscribeScoped()
         }
     }
@@ -74,7 +74,7 @@ internal class TodoEditStoreProvider(
     }
 
     interface Database {
-        fun load(id: Long): Maybe<TodoItem>
+        fun load(id: Long): Maybe<MgrokItem>
 
         fun setText(id: Long, text: String): Completable
 

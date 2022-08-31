@@ -10,37 +10,37 @@ import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.badoo.reaktive.base.Consumer
-import me.zerskine.mgrok.common.database.TodoSharedDatabase
-import me.zerskine.mgrok.common.edit.TodoEdit
-import me.zerskine.mgrok.common.edit.integration.TodoEditComponent
-import me.zerskine.mgrok.common.main.TodoMain
-import me.zerskine.mgrok.common.main.integration.TodoMainComponent
-import me.zerskine.mgrok.common.root.TodoRoot
-import me.zerskine.mgrok.common.root.TodoRoot.Child
+import me.zerskine.mgrok.common.database.MgrokSharedDatabase
+import me.zerskine.mgrok.common.edit.MgrokEdit
+import me.zerskine.mgrok.common.edit.integration.MgrokEditComponent
+import me.zerskine.mgrok.common.main.MgrokMain
+import me.zerskine.mgrok.common.main.integration.MgrokMainComponent
+import me.zerskine.mgrok.common.root.MgrokRoot
+import me.zerskine.mgrok.common.root.MgrokRoot.Child
 import me.zerskine.mgrok.common.utils.Consumer
 
-class TodoRootComponent internal constructor(
+class MgrokRootComponent internal constructor(
     componentContext: ComponentContext,
-    private val todoMain: (ComponentContext, Consumer<TodoMain.Output>) -> TodoMain,
-    private val todoEdit: (ComponentContext, itemId: Long, Consumer<TodoEdit.Output>) -> TodoEdit
-) : TodoRoot, ComponentContext by componentContext {
+    private val mgrokMain: (ComponentContext, Consumer<MgrokMain.Output>) -> MgrokMain,
+    private val mgrokEdit: (ComponentContext, itemId: Long, Consumer<MgrokEdit.Output>) -> MgrokEdit
+) : MgrokRoot, ComponentContext by componentContext {
 
     constructor(
         componentContext: ComponentContext,
         storeFactory: StoreFactory,
-        database: TodoSharedDatabase
+        database: MgrokSharedDatabase
     ) : this(
         componentContext = componentContext,
-        todoMain = { childContext, output ->
-            TodoMainComponent(
+        mgrokMain = { childContext, output ->
+            MgrokMainComponent(
                 componentContext = childContext,
                 storeFactory = storeFactory,
                 database = database,
                 output = output
             )
         },
-        todoEdit = { childContext, itemId, output ->
-            TodoEditComponent(
+        mgrokEdit = { childContext, itemId, output ->
+            MgrokEditComponent(
                 componentContext = childContext,
                 storeFactory = storeFactory,
                 database = database,
@@ -61,18 +61,18 @@ class TodoRootComponent internal constructor(
 
     private fun createChild(configuration: Configuration, componentContext: ComponentContext): Child =
         when (configuration) {
-            is Configuration.Main -> Child.Main(todoMain(componentContext, Consumer(::onMainOutput)))
-            is Configuration.Edit -> Child.Edit(todoEdit(componentContext, configuration.itemId, Consumer(::onEditOutput)))
+            is Configuration.Main -> Child.Main(mgrokMain(componentContext, Consumer(::onMainOutput)))
+            is Configuration.Edit -> Child.Edit(mgrokEdit(componentContext, configuration.itemId, Consumer(::onEditOutput)))
         }
 
-    private fun onMainOutput(output: TodoMain.Output): Unit =
+    private fun onMainOutput(output: MgrokMain.Output): Unit =
         when (output) {
-            is TodoMain.Output.Selected -> router.push(Configuration.Edit(itemId = output.id))
+            is MgrokMain.Output.Selected -> router.push(Configuration.Edit(itemId = output.id))
         }
 
-    private fun onEditOutput(output: TodoEdit.Output): Unit =
+    private fun onEditOutput(output: MgrokEdit.Output): Unit =
         when (output) {
-            is TodoEdit.Output.Finished -> router.pop()
+            is MgrokEdit.Output.Finished -> router.pop()
         }
 
     private sealed class Configuration : Parcelable {

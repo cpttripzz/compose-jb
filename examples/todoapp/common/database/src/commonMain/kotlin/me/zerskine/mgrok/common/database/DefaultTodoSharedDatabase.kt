@@ -22,27 +22,26 @@ import com.badoo.reaktive.single.observeOn
 import com.badoo.reaktive.single.singleOf
 import com.squareup.sqldelight.Query
 import com.squareup.sqldelight.db.SqlDriver
+import me.zerskine.mgrok.database.MgrokDatabase
 
 
-import me.zerskine.mgrok.database.TodoDatabase
-
-class DefaultTodoSharedDatabase(driver: Single<SqlDriver>) : TodoSharedDatabase {
+class DefaultMgrokSharedDatabase(driver: Single<SqlDriver>) : MgrokSharedDatabase {
 
     constructor(driver: SqlDriver) : this(singleOf(driver))
 
-    private val queries: Single<TodoDatabaseQueries> =
+    private val queries: Single<MgrokDatabaseQueries> =
         driver
-            .map { TodoDatabase(it).todoDatabaseQueries }
+            .map { MgrokDatabase(it).mgrokDatabaseQueries }
             .asObservable()
             .replay()
             .autoConnect()
             .firstOrError()
 
-    override fun observeAll(): Observable<List<TodoItemEntity>> =
-        query(TodoDatabaseQueries::selectAll)
+    override fun observeAll(): Observable<List<MgrokItemEntity>> =
+        query(MgrokDatabaseQueries::selectAll)
             .observe { it.executeAsList() }
 
-    override fun select(id: Long): Maybe<TodoItemEntity> =
+    override fun select(id: Long): Maybe<MgrokItemEntity> =
         query { it.select(id = id) }
             .mapNotNull { it.executeAsOneOrNull() }
 
@@ -61,12 +60,12 @@ class DefaultTodoSharedDatabase(driver: Single<SqlDriver>) : TodoSharedDatabase 
     override fun clear(): Completable =
         execute { it.clear() }
 
-    private fun <T : Any> query(query: (TodoDatabaseQueries) -> Query<T>): Single<Query<T>> =
+    private fun <T : Any> query(query: (MgrokDatabaseQueries) -> Query<T>): Single<Query<T>> =
         queries
             .observeOn(ioScheduler)
             .map(query)
 
-    private fun execute(query: (TodoDatabaseQueries) -> Unit): Completable =
+    private fun execute(query: (MgrokDatabaseQueries) -> Unit): Completable =
         queries
             .observeOn(ioScheduler)
             .doOnBeforeSuccess(query)

@@ -1,6 +1,6 @@
 package me.zerskine.mgrok.common.main
 
-data class TodoItem(
+data class MgrokItem(
     val id: Long = 0L,
     val order: Long = 0L,
     val text: String = "",

@@ -1,4 +1,4 @@
-An example of Kotlin Multiplatform todo app with shared Android/Desktop Compose UI and SwiftUI (not Compose) iOS.
+An example of Kotlin Multiplatform Mgrok app with shared Android/Desktop Compose UI and SwiftUI (not Compose) iOS.
 
 This example supports the following targets: 
 - `Android` (Compose)
@@ -16,7 +16,7 @@ Libraries used:
 There are multiple modules:
 - `:common:utils` - just some useful helpers
 - `:common:database` - SQLDelight database definition
-- `:common:main` - displays a list of todo items and a text field
+- `:common:main` - displays a list of Mgrok items and a text field
 - `:common:edit` - accepts an item id and allows editing
 - `:common:root` - navigates between `main` and `edit` screens
 - `:common:compose-ui` - Shared Compose UI for Android and Desktop
@@ -57,4 +57,4 @@ Open project in Intellij IDEA or Android Studio and run "android" configuration.
 
 Open and build the Xcode project located in `ios` folder.
 
-![Desktop](screenshots/todo.png)
+![Desktop](screenshots/Mgrok.png)

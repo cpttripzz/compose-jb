@@ -1,7 +1,7 @@
 package me.zerskine.mgrok.common.edit.integration
 
-import me.zerskine.mgrok.common.edit.TodoEdit.Model
-import me.zerskine.mgrok.common.edit.store.TodoEditStore.State
+import me.zerskine.mgrok.common.edit.MgrokEdit.Model
+import me.zerskine.mgrok.common.edit.store.MgrokEditStore.State
 
 internal val stateToModel: (State) -> Model =
     {

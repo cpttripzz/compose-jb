@@ -29,6 +29,12 @@ kotlin {
                 implementation(Deps.ArkIvanov.MVIKotlin.mvikotlinMain)
                 implementation(npm("copy-webpack-plugin", "9.0.0"))
                 implementation(npm("@material-ui/icons", "4.11.2"))
+                implementation("org.jetbrains.kotlin-wrappers:kotlin-react:18.0.0-pre.325-kotlin-1.6.10")
+                implementation("org.jetbrains.kotlin-wrappers:kotlin-react-dom:18.0.0-pre.325-kotlin-1.6.10")
+
+                implementation("org.jetbrains.kotlin-wrappers:kotlin-styled:18.0.0-pre.325-kotlin-1.6.10")
+                implementation("org.jetbrains.kotlin-wrappers:kotlin-emotion:18.0.0-pre.325-kotlin-1.6.10")
+                implementation("org.jetbrains.kotlin-wrappers:kotlin-mui:18.0.0-pre.325-kotlin-1.6.10")
             }
         }
     }

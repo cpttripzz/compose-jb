@@ -6,27 +6,27 @@ import com.arkivanov.decompose.value.operator.map
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.badoo.reaktive.base.Consumer
 import com.badoo.reaktive.base.invoke
-import me.zerskine.mgrok.common.database.TodoSharedDatabase
-import me.zerskine.mgrok.common.main.TodoMain
-import me.zerskine.mgrok.common.main.TodoMain.Model
-import me.zerskine.mgrok.common.main.TodoMain.Output
-import me.zerskine.mgrok.common.main.store.TodoMainStore.Intent
-import me.zerskine.mgrok.common.main.store.TodoMainStoreProvider
+import me.zerskine.mgrok.common.database.MgrokSharedDatabase
+import me.zerskine.mgrok.common.main.MgrokMain
+import me.zerskine.mgrok.common.main.MgrokMain.Model
+import me.zerskine.mgrok.common.main.MgrokMain.Output
+import me.zerskine.mgrok.common.main.store.MgrokMainStore.Intent
+import me.zerskine.mgrok.common.main.store.MgrokMainStoreProvider
 import me.zerskine.mgrok.common.utils.asValue
 import me.zerskine.mgrok.common.utils.getStore
 
-class TodoMainComponent(
+class MgrokMainComponent(
     componentContext: ComponentContext,
     storeFactory: StoreFactory,
-    database: TodoSharedDatabase,
+    database: MgrokSharedDatabase,
     private val output: Consumer<Output>
-) : TodoMain, ComponentContext by componentContext {
+) : MgrokMain, ComponentContext by componentContext {
 
     private val store =
         instanceKeeper.getStore {
-            TodoMainStoreProvider(
+            MgrokMainStoreProvider(
                 storeFactory = storeFactory,
-                database = TodoMainStoreDatabase(database = database)
+                database = MgrokMainStoreDatabase(database = database)
             ).provide()
         }
 

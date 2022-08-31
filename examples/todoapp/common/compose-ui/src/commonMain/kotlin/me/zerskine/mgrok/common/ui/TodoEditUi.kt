@@ -20,15 +20,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
-import me.zerskine.mgrok.common.edit.TodoEdit
+import me.zerskine.mgrok.common.edit.MgrokEdit
 
 @Composable
-fun TodoEditContent(component: TodoEdit) {
+fun MgrokEditContent(component: MgrokEdit) {
     val model by component.models.subscribeAsState()
 
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         TopAppBar(
-            title = { Text("Edit todo") },
+            title = { Text("Edit Mgrok") },
             navigationIcon = {
                 IconButton(onClick = component::onCloseClicked) {
                     Icon(
@@ -42,7 +42,7 @@ fun TodoEditContent(component: TodoEdit) {
         TextField(
             value = model.text,
             modifier = Modifier.weight(1F).fillMaxWidth().padding(8.dp),
-            label = { Text("Todo text") },
+            label = { Text("Mgrok text") },
             onValueChange = component::onTextChanged
         )
 

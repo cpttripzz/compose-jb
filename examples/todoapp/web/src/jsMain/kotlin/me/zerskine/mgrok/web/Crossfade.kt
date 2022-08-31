@@ -93,14 +93,14 @@ private fun animateFloatFactor(key: Any, durationMillis: Long, easing: Easing = 
     LaunchedEffect(key) {
         var date = Date.now()
         val startMillis = date
-        val endMillis = startMillis + durationMillis.toDouble()
+        val endMillis = startMillis + durationMillis.mgrokuble()
         while (true) {
             date = Date.now()
             if (date >= endMillis) {
                 break
             }
 
-            state.value = easing.transform(((date - startMillis) / durationMillis.toDouble()).toFloat())
+            state.value = easing.transform(((date - startMillis) / durationMillis.mgrokuble()).toFloat())
             delay(16L)
         }
 

@@ -2,7 +2,7 @@ package me.zerskine.mgrok.web
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import me.zerskine.mgrok.common.root.TodoRoot
+import me.zerskine.mgrok.common.root.MgrokRoot
 import org.jetbrains.compose.web.css.Position
 import org.jetbrains.compose.web.css.keywords.auto
 import org.jetbrains.compose.web.css.bottom
@@ -16,7 +16,7 @@ import org.jetbrains.compose.web.css.top
 import org.jetbrains.compose.web.css.width
 
 @Composable
-fun TodoRootUi(component: TodoRoot) {
+fun MgrokRootUi(component: MgrokRoot) {
     Card(
         attrs = {
             style {
@@ -46,8 +46,8 @@ fun TodoRootUi(component: TodoRoot) {
             }
         ) { child ->
             when (child) {
-                is TodoRoot.Child.Main -> TodoMainUi(child.component)
-                is TodoRoot.Child.Edit -> TodoEditUi(child.component)
+                is MgrokRoot.Child.Main -> MgrokMainUi(child.component)
+                is MgrokRoot.Child.Edit -> MgrokEditUi(child.component)
             }
         }
     }

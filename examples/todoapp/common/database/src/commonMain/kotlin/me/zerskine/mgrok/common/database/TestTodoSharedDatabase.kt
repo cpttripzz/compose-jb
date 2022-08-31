@@ -15,18 +15,18 @@ import com.badoo.reaktive.single.singleFromFunction
 import com.badoo.reaktive.subject.behavior.BehaviorSubject
 
 // There were problems when using real database in JS tests, hence the in-memory test implementation
-class TestTodoSharedDatabase(
+class TestMgrokSharedDatabase(
     private val scheduler: Scheduler
-) : TodoSharedDatabase {
+) : MgrokSharedDatabase {
 
-    private val itemsSubject = BehaviorSubject<Map<Long, TodoItemEntity>>(emptyMap())
+    private val itemsSubject = BehaviorSubject<Map<Long, MgrokItemEntity>>(emptyMap())
     private val itemsObservable = itemsSubject.observeOn(scheduler)
     val testing: Testing = Testing()
 
-    override fun observeAll(): Observable<List<TodoItemEntity>> =
+    override fun observeAll(): Observable<List<MgrokItemEntity>> =
         itemsObservable.map { it.values.toList() }
 
-    override fun select(id: Long): Maybe<TodoItemEntity> =
+    override fun select(id: Long): Maybe<MgrokItemEntity> =
         singleFromFunction { testing.select(id = id) }
             .notNull()
             .observeOn(scheduler)
@@ -51,10 +51,10 @@ class TestTodoSharedDatabase(
             .observeOn(scheduler)
 
     inner class Testing {
-        fun select(id: Long): TodoItemEntity? =
+        fun select(id: Long): MgrokItemEntity? =
             itemsSubject.value[id]
 
-        fun selectRequired(id: Long): TodoItemEntity =
+        fun selectRequired(id: Long): MgrokItemEntity =
             requireNotNull(select(id = id))
 
         fun add(text: String) {
@@ -62,7 +62,7 @@ class TestTodoSharedDatabase(
                 val nextId = items.keys.maxOrNull()?.plus(1L) ?: 1L
 
                 val item =
-                    TodoItemEntity(
+                    MgrokItemEntity(
                         id = nextId,
                         orderNum = items.size.toLong(),
                         text = text,
@@ -92,11 +92,11 @@ class TestTodoSharedDatabase(
         fun getLastInsertId(): Long? =
             itemsSubject.value.values.lastOrNull()?.id
 
-        private fun updateItems(func: (Map<Long, TodoItemEntity>) -> Map<Long, TodoItemEntity>) {
+        private fun updateItems(func: (Map<Long, MgrokItemEntity>) -> Map<Long, MgrokItemEntity>) {
             itemsSubject(func(itemsSubject.value))
         }
 
-        private fun updateItem(id: Long, func: (TodoItemEntity) -> TodoItemEntity) {
+        private fun updateItem(id: Long, func: (MgrokItemEntity) -> MgrokItemEntity) {
             updateItems {
                 it + (id to it.getValue(id).let(func))
             }

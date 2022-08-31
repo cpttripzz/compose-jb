@@ -1,6 +1,6 @@
 package me.zerskine.mgrok.common.edit
 
-internal data class TodoItem(
+internal data class MgrokItem(
     val text: String,
     val isDone: Boolean
 )

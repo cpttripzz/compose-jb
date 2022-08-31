@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS TodoItemEntity (
+CREATE TABLE IF NOT EXISTS MgrokItemEntity (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     orderNum INTEGER NOT NULL,
     text TEXT NOT NULL,
@@ -7,33 +7,33 @@ CREATE TABLE IF NOT EXISTS TodoItemEntity (
 
 selectAll:
 SELECT *
-FROM TodoItemEntity;
+FROM MgrokItemEntity;
 
 select:
 SELECT *
-FROM TodoItemEntity
+FROM MgrokItemEntity
 WHERE id = :id;
 
 add:
-INSERT INTO TodoItemEntity (orderNum, text)
-VALUES ((CASE (SELECT COUNT(*) FROM TodoItemEntity) WHEN 0 THEN 1 ELSE (SELECT MAX(orderNum)+1 FROM TodoItemEntity) END), :text);
+INSERT INTO MgrokItemEntity (orderNum, text)
+VALUES ((CASE (SELECT COUNT(*) FROM MgrokItemEntity) WHEN 0 THEN 1 ELSE (SELECT MAX(orderNum)+1 FROM MgrokItemEntity) END), :text);
 
 setText:
-UPDATE TodoItemEntity
+UPDATE MgrokItemEntity
 SET text = :text
 WHERE id = :id;
 
 setDone:
-UPDATE TodoItemEntity
+UPDATE MgrokItemEntity
 SET isDone = :isDone
 WHERE id = :id;
 
 delete:
-DELETE FROM TodoItemEntity
+DELETE FROM MgrokItemEntity
 WHERE id = :id;
 
 getLastInsertId:
 SELECT last_insert_rowid();
 
 clear:
-DELETE FROM TodoItemEntity;
+DELETE FROM MgrokItemEntity;

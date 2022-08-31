@@ -2,7 +2,7 @@ package me.zerskine.mgrok.common.edit
 
 import com.arkivanov.decompose.value.Value
 
-interface TodoEdit {
+interface MgrokEdit {
 
     val models: Value<Model>
 

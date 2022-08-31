@@ -10,18 +10,18 @@ import com.badoo.reaktive.observable.Observable
 import com.badoo.reaktive.observable.map
 import com.badoo.reaktive.observable.observeOn
 import com.badoo.reaktive.scheduler.mainScheduler
-import me.zerskine.mgrok.common.main.TodoItem
-import me.zerskine.mgrok.common.main.store.TodoMainStore.Intent
-import me.zerskine.mgrok.common.main.store.TodoMainStore.State
+import me.zerskine.mgrok.common.main.MgrokItem
+import me.zerskine.mgrok.common.main.store.MgrokMainStore.Intent
+import me.zerskine.mgrok.common.main.store.MgrokMainStore.State
 
-internal class TodoMainStoreProvider(
+internal class MgrokMainStoreProvider(
     private val storeFactory: StoreFactory,
     private val database: Database
 ) {
 
-    fun provide(): TodoMainStore =
-        object : TodoMainStore, Store<Intent, State, Nothing> by storeFactory.create(
-            name = "TodoListStore",
+    fun provide(): MgrokMainStore =
+        object : MgrokMainStore, Store<Intent, State, Nothing> by storeFactory.create(
+            name = "MgrokListStore",
             initialState = State(),
             bootstrapper = SimpleBootstrapper(Unit),
             executorFactory = ::ExecutorImpl,
@@ -29,7 +29,7 @@ internal class TodoMainStoreProvider(
         ) {}
 
     private sealed class Msg {
-        data class ItemsLoaded(val items: List<TodoItem>) : Msg()
+        data class ItemsLoaded(val items: List<MgrokItem>) : Msg()
         data class ItemDoneChanged(val id: Long, val isDone: Boolean) : Msg()
         data class ItemDeleted(val id: Long) : Msg()
         data class TextChanged(val text: String) : Msg()
@@ -79,24 +79,24 @@ internal class TodoMainStoreProvider(
                 is Msg.TextChanged -> copy(text = msg.text)
             }
 
-        private inline fun State.update(id: Long, func: TodoItem.() -> TodoItem): State {
+        private inline fun State.update(id: Long, func: MgrokItem.() -> MgrokItem): State {
             val item = items.find { it.id == id } ?: return this
 
             return put(item.func())
         }
 
-        private fun State.put(item: TodoItem): State {
-            val oldItems = items.associateByTo(mutableMapOf(), TodoItem::id)
-            val oldItem: TodoItem? = oldItems.put(item.id, item)
+        private fun State.put(item: MgrokItem): State {
+            val oldItems = items.associateByTo(mutableMapOf(), MgrokItem::id)
+            val oldItem: MgrokItem? = oldItems.put(item.id, item)
 
             return copy(items = if (oldItem?.order == item.order) oldItems.values.toList() else oldItems.values.sorted())
         }
 
-        private fun Iterable<TodoItem>.sorted(): List<TodoItem> = sortedByDescending(TodoItem::order)
+        private fun Iterable<MgrokItem>.sorted(): List<MgrokItem> = sortedByDescending(MgrokItem::order)
     }
 
     interface Database {
-        val updates: Observable<List<TodoItem>>
+        val updates: Observable<List<MgrokItem>>
 
         fun setDone(id: Long, isDone: Boolean): Completable
 

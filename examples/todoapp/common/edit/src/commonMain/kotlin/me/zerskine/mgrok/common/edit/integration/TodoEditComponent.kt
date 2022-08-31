@@ -6,28 +6,28 @@ import com.arkivanov.decompose.value.operator.map
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.badoo.reaktive.base.Consumer
 import com.badoo.reaktive.base.invoke
-import me.zerskine.mgrok.common.database.TodoSharedDatabase
-import me.zerskine.mgrok.common.edit.TodoEdit
-import me.zerskine.mgrok.common.edit.TodoEdit.Model
-import me.zerskine.mgrok.common.edit.TodoEdit.Output
-import me.zerskine.mgrok.common.edit.store.TodoEditStore.Intent
-import me.zerskine.mgrok.common.edit.store.TodoEditStoreProvider
+import me.zerskine.mgrok.common.database.MgrokSharedDatabase
+import me.zerskine.mgrok.common.edit.MgrokEdit
+import me.zerskine.mgrok.common.edit.MgrokEdit.Model
+import me.zerskine.mgrok.common.edit.MgrokEdit.Output
+import me.zerskine.mgrok.common.edit.store.MgrokEditStore.Intent
+import me.zerskine.mgrok.common.edit.store.MgrokEditStoreProvider
 import me.zerskine.mgrok.common.utils.asValue
 import me.zerskine.mgrok.common.utils.getStore
 
-class TodoEditComponent(
+class MgrokEditComponent(
     componentContext: ComponentContext,
     storeFactory: StoreFactory,
-    database: TodoSharedDatabase,
+    database: MgrokSharedDatabase,
     itemId: Long,
     private val output: Consumer<Output>
-) : TodoEdit, ComponentContext by componentContext {
+) : MgrokEdit, ComponentContext by componentContext {
 
     private val store =
         instanceKeeper.getStore {
-            TodoEditStoreProvider(
+            MgrokEditStoreProvider(
                 storeFactory = storeFactory,
-                database = TodoEditStoreDatabase(database = database),
+                database = MgrokEditStoreDatabase(database = database),
                 id = itemId
             ).provide()
         }

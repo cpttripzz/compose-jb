@@ -3,22 +3,22 @@ package me.zerskine.mgrok.common.edit.integration
 import com.badoo.reaktive.completable.Completable
 import com.badoo.reaktive.maybe.Maybe
 import com.badoo.reaktive.maybe.map
-import me.zerskine.mgrok.common.database.TodoItemEntity
-import me.zerskine.mgrok.common.database.TodoSharedDatabase
-import me.zerskine.mgrok.common.edit.TodoItem
-import me.zerskine.mgrok.common.edit.store.TodoEditStoreProvider.Database
+import me.zerskine.mgrok.common.database.MgrokItemEntity
+import me.zerskine.mgrok.common.database.MgrokSharedDatabase
+import me.zerskine.mgrok.common.edit.MgrokItem
+import me.zerskine.mgrok.common.edit.store.MgrokEditStoreProvider.Database
 
-internal class TodoEditStoreDatabase(
-    private val database: TodoSharedDatabase
+internal class MgrokEditStoreDatabase(
+    private val database: MgrokSharedDatabase
 ) : Database {
 
-    override fun load(id: Long): Maybe<TodoItem> =
+    override fun load(id: Long): Maybe<MgrokItem> =
         database
             .select(id = id)
             .map { it.toItem() }
 
-    private fun TodoItemEntity.toItem(): TodoItem =
-        TodoItem(
+    private fun MgrokItemEntity.toItem(): MgrokItem =
+        MgrokItem(
             text = text,
             isDone = isDone
         )

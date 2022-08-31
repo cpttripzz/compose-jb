@@ -2,8 +2,8 @@ package me.zerskine.mgrok.web
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import me.zerskine.mgrok.common.main.TodoItem
-import me.zerskine.mgrok.common.main.TodoMain
+import me.zerskine.mgrok.common.main.MgrokItem
+import me.zerskine.mgrok.common.main.MgrokMain
 import org.jetbrains.compose.web.css.AlignItems
 import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.FlexDirection
@@ -26,7 +26,7 @@ import org.w3c.dom.HTMLUListElement
 
 
 @Composable
-fun TodoMainUi(component: TodoMain) {
+fun MgrokMainUi(component: MgrokMain) {
     val model by component.models.subscribeAsState()
 
     Div(
@@ -47,7 +47,7 @@ fun TodoMainUi(component: TodoMain) {
                 }
             }
         ) {
-            NavBar(title = "Todo List")
+            NavBar(title = "Mgrok List")
         }
 
         Ul(
@@ -78,7 +78,7 @@ fun TodoMainUi(component: TodoMain) {
                 }
             }
         ) {
-            TodoInput(
+            MgrokInput(
                 text = model.text,
                 onTextChanged = component::onInputTextChanged,
                 onAddClicked = component::onAddItemClicked
@@ -89,7 +89,7 @@ fun TodoMainUi(component: TodoMain) {
 
 @Composable
 private fun DOMScope<HTMLUListElement>.Item(
-    item: TodoItem,
+    item: MgrokItem,
     onClicked: (id: Long) -> Unit,
     onDoneChanged: (id: Long, isDone: Boolean) -> Unit,
     onDeleteClicked: (id: Long) -> Unit
@@ -147,7 +147,7 @@ private fun DOMScope<HTMLUListElement>.Item(
 }
 
 @Composable
-private fun TodoInput(
+private fun MgrokInput(
     text: String,
     onTextChanged: (String) -> Unit,
     onAddClicked: () -> Unit
@@ -163,8 +163,8 @@ private fun TodoInput(
         }
     ) {
         MaterialTextArea(
-            id = "text_area_add_todo",
-            label = "Add todo",
+            id = "text_area_add_mgrok",
+            label = "Add mgrok",
             text = text,
             onTextChanged = onTextChanged,
             attrs = {

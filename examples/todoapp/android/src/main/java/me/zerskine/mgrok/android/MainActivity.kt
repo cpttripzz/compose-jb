@@ -10,31 +10,31 @@ import com.arkivanov.decompose.defaultComponentContext
 import com.arkivanov.mvikotlin.logging.store.LoggingStoreFactory
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.arkivanov.mvikotlin.timetravel.store.TimeTravelStoreFactory
-import me.zerskine.mgrok.common.database.DefaultTodoSharedDatabase
-import me.zerskine.mgrok.common.database.TodoDatabaseDriver
-import me.zerskine.mgrok.common.root.TodoRoot
-import me.zerskine.mgrok.common.root.integration.TodoRootComponent
-import me.zerskine.mgrok.common.ui.TodoRootContent
+import me.zerskine.mgrok.common.database.DefaultMgrokSharedDatabase
+import me.zerskine.mgrok.common.database.MgrokDatabaseDriver
+import me.zerskine.mgrok.common.root.MgrokRoot
+import me.zerskine.mgrok.common.root.integration.MgrokRootComponent
+import me.zerskine.mgrok.common.ui.MgrokRootContent
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val root = todoRoot(defaultComponentContext())
+        val root = MgrokRoot(defaultComponentContext())
 
         setContent {
             ComposeAppTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    TodoRootContent(root)
+                    MgrokRootContent(root)
                 }
             }
         }
     }
 
-    private fun todoRoot(componentContext: ComponentContext): TodoRoot =
-        TodoRootComponent(
+    private fun MgrokRoot(componentContext: ComponentContext): MgrokRoot =
+        MgrokRootComponent(
             componentContext = componentContext,
             storeFactory = LoggingStoreFactory(TimeTravelStoreFactory()),
-            database = DefaultTodoSharedDatabase(TodoDatabaseDriver(context = this))
+            database = DefaultMgrokSharedDatabase(MgrokDatabaseDriver(context = this))
         )
 }

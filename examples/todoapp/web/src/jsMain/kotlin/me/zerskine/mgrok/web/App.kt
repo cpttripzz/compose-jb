@@ -4,9 +4,9 @@ import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.arkivanov.essenty.lifecycle.resume
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
-import me.zerskine.mgrok.common.database.DefaultTodoSharedDatabase
-import me.zerskine.mgrok.common.database.todoDatabaseDriver
-import me.zerskine.mgrok.common.root.integration.TodoRootComponent
+import me.zerskine.mgrok.common.database.DefaultMgrokSharedDatabase
+import me.zerskine.mgrok.common.database.mgrokDatabaseDriver
+import me.zerskine.mgrok.common.root.integration.MgrokRootComponent
 import kotlinx.browser.document
 import org.jetbrains.compose.web.css.Style
 import org.jetbrains.compose.web.renderComposable
@@ -19,10 +19,10 @@ fun main() {
     val lifecycle = LifecycleRegistry()
 
     val root =
-        TodoRootComponent(
+        MgrokRootComponent(
             componentContext = DefaultComponentContext(lifecycle = lifecycle),
             storeFactory = DefaultStoreFactory(),
-            database = DefaultTodoSharedDatabase(todoDatabaseDriver())
+            database = DefaultMgrokSharedDatabase(mgrokDatabaseDriver())
         )
 
     lifecycle.resume()
@@ -30,6 +30,6 @@ fun main() {
     renderComposable(root = rootElement) {
         Style(Styles)
 
-        TodoRootUi(root)
+        MgrokRootUi(root)
     }
 }

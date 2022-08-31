@@ -5,7 +5,7 @@ plugins {
 }
 
 sqldelight {
-    database("TodoDatabase") {
+    database("MgrokDatabase") {
         packageName = "me.zerskine.mgrok.database"
     }
 }
